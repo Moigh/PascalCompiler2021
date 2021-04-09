@@ -1,4 +1,4 @@
 #pragma once
 #include <cstring>
 
-const string comp_name = "my_compiler";
+const char* comp_name = "my_compiler";
