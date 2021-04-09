@@ -4,6 +4,7 @@
 #include <set>
 
 #include "lexer.h"
+#include "compiler_names.h"
 
 int main(int argc, char * argv[]){
 
@@ -12,7 +13,7 @@ int main(int argc, char * argv[]){
   if ((argc > arg) && (strcmp(argv[arg],"-l") == 0)){
     ++arg;
     if (argc <= arg){
-      printf("my_compiler: error: missing argument to ‘%s’\n", argv[arg - 1]);
+      printf("%s: error: missing argument to ‘%s’\n", comp_name, argv[arg - 1]);
     }
     else{
       //_lexer lexer(argv[keys]);
@@ -21,7 +22,7 @@ int main(int argc, char * argv[]){
   }
 
   if (argc <= arg)
-    printf("my_compiler: fatal error: no input files\n");
+    printf("%s: fatal error: no input files\n", comp_name);
 
 }
 
