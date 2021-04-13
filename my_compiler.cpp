@@ -1,6 +1,8 @@
 #include <cstring>
 #include <cstdio>
 #include <stdlib.h>
+#include <iostream>
+#include <fstream>
 
 #include "lexer.h"
 #include "compiler_names.h"
@@ -23,28 +25,43 @@ int main(int argc, char * argv[]){
       error_message(err_message);
     }
     else{
-      FILE *input = fopen(argv[arg], "r");
 
-      if (input == NULL) {
+      std::ifstream input(argv[arg]);
+
+      if (input.is_open()) {
+        //lexer _lexer(argv[keys]);
+        //_lexer::start();
+
+        printf("good\n");
+        input.close();
+      }else{
         sprintf(err_message, "cannot open ‘%s’ for reading: No such file or directory", argv[arg]);
         error_message(err_message);
-      }else{
-        //_lexer lexer(argv[keys]);
-        printf("good\n");
       }
     }
   }
 
+
+
   if (argc <= arg){
+
     sprintf(err_message, "no input files");
     error_message(err_message);
-  }else
-  if (argc <= 2){
-    FILE *input = fopen(argv[arg], "r");
-    if (input == NULL) {
+
+  }
+  else if (argc <= 2){
+
+    std::ifstream input(argv[arg]);
+
+    if (input.is_open()) {
+      printf("good\n");
+      input.close();
+    }
+    else{
       sprintf(err_message, "cannot open ‘%s’ for reading: No such file or directory", argv[arg]);
       error_message(err_message);
     }
+
   }
 
 }
